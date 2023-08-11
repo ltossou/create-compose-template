@@ -1,0 +1,26 @@
+{
+  "Trains": [
+    {
+      "Car": "6",
+      "Destination": "SilvrSpg",
+      "DestinationCode": "B08",
+      "DestinationName": "Silver Spring",
+      "Group": "1",
+      "Line": "RD",
+      "LocationCode": "A01",
+      "LocationName": "Metro Center",
+      "Min": "3"
+    },
+    {
+      "Car": "6",
+      "Destination": "Grsvnor",
+      "DestinationCode": "A11",
+      "DestinationName": "Grosvenor-Strathmore",
+      "Group": "2",
+      "Line": "RD",
+      "LocationCode": "A01",
+      "LocationName": "Metro Center",
+      "Min": "4"
+    }
+  ]
+}

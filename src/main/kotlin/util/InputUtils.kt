@@ -1,0 +1,69 @@
+package util
+
+import java.util.*
+
+/**
+ * Operations related to reading text input from console
+ */
+object InputUtils {
+
+    private val scanner by lazy { Scanner(System.`in`) }
+
+    /**
+     * Get a String with given prompt as prompt
+     */
+    fun promptString(prompt: String, isRequired: Boolean, default: String = ""): String {
+        print(Color.GREEN, "$prompt: ")
+        val value = scanner.nextLine()
+        while (value.trim().isEmpty() && isRequired) {
+            println(Color.RED, "Invalid ${prompt.lowercase(Locale.getDefault())} `$value`")
+            return promptString(prompt, isRequired, default)
+        }
+        return value.ifEmpty { default }
+    }
+
+    fun promptStringMultiline(prompt: String,isRequired: Boolean): String {
+        print(Color.GREEN, "$prompt: ")
+        var value = ""
+        while (scanner.hasNextLine()) {
+            val tokens = scanner.nextLine().split("\\n".toRegex()).toTypedArray()
+            // println(tokens.contentToString())
+            if (tokens[0] == "x" || tokens[0].trim().isEmpty()) {
+                break
+            }
+            value += "\n" + tokens[0]
+        }
+        while (value.trim().isEmpty() && isRequired) {
+            println(Color.RED, "Invalid ${prompt.lowercase(Locale.getDefault())} `$value`")
+            return promptStringMultiline(prompt, isRequired)
+        }
+        return value
+    }
+    fun getBoolean(prompt: String, default: Boolean = false): Boolean {
+        val yesOption = if (default) "Y" else "y"
+        val noOption = if (!default) "N" else "n"
+        print(Color.GREEN, "$prompt ($yesOption/$noOption): ")
+
+        val value = scanner.nextLine().trim()
+        return if (value.isNotEmpty()) value.equals("y", ignoreCase = true) else default
+    }
+
+    fun getInt(prompt: String, lowerBound: Int, upperBound: Int, but: Array<Int> = arrayOf()): Int {
+        print(Color.GREEN, "$prompt: ")
+
+        val sVal = scanner.nextLine()
+        try {
+            val value = sVal.toInt()
+            if (!but.contains(value) && (value < lowerBound || value > upperBound)) {
+                // error
+                println(Color.RED, "Input must be between $lowerBound and $upperBound")
+                return getInt(prompt, lowerBound, upperBound)
+            }
+            return value
+        } catch (e: NumberFormatException) {
+            println("Invalid input `$sVal`")
+            return getInt(prompt, lowerBound, upperBound)
+        }
+    }
+
+}

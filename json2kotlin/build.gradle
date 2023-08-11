@@ -1,0 +1,18 @@
+//apply plugin: 'kotlin'
+plugins {
+    id 'org.jetbrains.kotlin.jvm'
+}
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.1'
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0"
+
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation("com.squareup.moshi:moshi:1.14.0")
+    implementation 'com.squareup:kotlinpoet:1.14.2'
+}

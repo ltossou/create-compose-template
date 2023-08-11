@@ -1,0 +1,36 @@
+{
+  "events": [
+    {
+      "type": "concert",
+      "id": 6049360,
+      "datetime_utc": "2023-08-08T23:00:00",
+      "venue": {
+        "state": "DC",
+        "name_v2": "9:30 Club",
+        "postal_code": "20001",
+        "name": "9:30 Club",
+        "links": [],
+        "timezone": "America/New_York",
+        "url": "https://seatgeek.com/venues/9-30-club-3/tickets",
+        "score": 0.68,
+        "location": {
+          "lat": 38.918,
+          "lon": -77.0237
+        },
+        "address": "815 V St. NW",
+        "country": "US",
+        "has_upcoming_events": true,
+        "num_upcoming_events": 77,
+        "city": "Washington",
+        "slug": "9-30-club-3",
+        "extended_address": "Washington, DC 20001",
+        "id": 538,
+        "popularity": 0,
+        "access_method": null,
+        "metro_code": 511,
+        "capacity": 0,
+        "display_location": "Washington, DC"
+      }
+    }
+  ]
+}

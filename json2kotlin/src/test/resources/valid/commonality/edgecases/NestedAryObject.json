@@ -1,0 +1,36 @@
+[
+  {
+    "id": -1
+  },
+  {
+    "id": 193351,
+    "cachedContents": {
+      "average": "5035.035714285714",
+      "largest": "31632",
+      "top": [
+        {
+          "item": "6496",
+          "count": 20
+        }
+      ]
+    }
+  },
+  {
+    "id": 193352,
+    "cachedContents": {
+      "largest": "http://openplaques.org/plaques/9199.json",
+      "top": [
+        {
+          "item": "http://openplaques.org/plaques/6496.json",
+          "count": 20
+        }
+      ]
+    }
+  },
+  {
+    "id": 193359,
+    "cachedContents": {
+      "largest": "http://farm9.staticflickr.com/8422/7803179600_15a03ca521_s.jpg"
+    }
+  }
+]
