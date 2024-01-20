@@ -63,6 +63,8 @@
   Support dark/light themes
 - [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) - Data storage
   solution that allows you to store key-value pairs or typed objects
+- 🖋 [Google Font](https://fonts.google.com/) - Custom Google Font
+
 
 ## 🚧 Under Development 
 

@@ -5,6 +5,7 @@ import api.MapperGenerator
 import api.NetworkModuleGenerator
 import api.RemoteDataSourceGenerator
 import api.RepositoryGenerator
+import font.FontGenerator
 import local.DatabaseGenerator
 import local.DatabaseModuleGenerator
 import local.LocalDataSourceGenerator
@@ -18,6 +19,7 @@ class DependencyProvider(private val rootPackageName: String, val projectPath: P
     val networkModuleGenerator by lazy { NetworkModuleGenerator(packageProvider) }
     val databaseModuleGenerator by lazy { DatabaseModuleGenerator(packageProvider) }
     val databaseGenerator: DatabaseGenerator by lazy { DatabaseGenerator(projectPath, packageProvider) }
+    val fontGenerator: FontGenerator by lazy { FontGenerator(projectPath, packageProvider) }
 
     val packageProvider by lazy { PackageProvider(rootPackageName) }
     val jsonConverter: JsonConverter by lazy { JsonConverter() }

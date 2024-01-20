@@ -31,10 +31,38 @@ abstract class BaseGenerator(protected val packageProvider: PackageProvider, pro
     )
 
     fun askToExport(
+        packageName: String,
+        filename: String,
+        fileContent: String,
+        index: Int = 1,
+        count: Int = 1
+    ) =
+        ifExport(Path.of(packageName.replace("${packageProvider.root}.", "").replace(".", File.separator)),
+            "$filename.kt"
+        ) {
+            writeFileToProject(filename, fileContent, it, index, count)
+        }
+
+    fun askToExport(
         relativePath: Path, fileSpec: FileSpec, index: Int = 1,
         count: Int = 1
     ) {
         ifExport(relativePath, fileSpec.name + ".kt") { writeFileToProject(fileSpec.name, fileSpec, it, index, count) }
+    }
+
+    fun writeFileToProject(
+        fileName: String,
+        fileContent: String,
+        relativePath: Path,
+        index: Int = 1,
+        count: Int = 1
+    ) {
+        val filename = "$fileName.kt"
+        val targetPath = relativePath.getAbsolutePathFromProject()
+        println("🚚 Preparing source $filename @ $targetPath ($index/$count) ...")
+        targetPath.createDirectories()
+        File(targetPath.toFile(), filename).writeText(fileContent)
+        println("✔ Finished [$targetPath${File.separator}$filename]")
     }
 
     fun writeFileToProject(

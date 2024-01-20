@@ -20,4 +20,6 @@ class PackageProvider(val root: String) {
     fun apis(api: Api) = apis(api.name.lowercase())
 
     fun apiModels(apiName: String) = "$root.data.api.$apiName.model".lowercase()
+
+    fun fontTypography() = "$root.ui.theme".lowercase()
 }

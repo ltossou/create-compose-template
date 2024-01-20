@@ -1,3 +1,5 @@
+import di.DependencyProvider
+import font.FontGenerator
 import util.Color
 import util.InputUtils
 import util.unzip
@@ -260,8 +262,16 @@ class Roboto(
     fun start() {
         println("💻 Initializing...")
 
-        // Pull template
+        generateFont()
         createApi(projectPath)
+    }
+
+    private fun generateFont() {
+        val provider = DependencyProvider(packageName, projectPath)
+        val fontResult = provider.fontGenerator.start()
+        if (fontResult is FontGenerator.Result.Success && fontResult.warnings.isNotEmpty()) {
+            util.println(Color.YELLOW, "Warnings:\n\t *${fontResult.warnings.joinToString(separator = "\n\t*")}")
+        }
     }
 
     fun start(
