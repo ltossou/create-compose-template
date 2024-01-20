@@ -8,6 +8,7 @@ data class Font(
 ) {
 
     companion object : DataInput<Font> {
+        val DEFAULT = Font()
         override fun fromInput(modelsSpecs: List<FileSpec>): Font {
             println("\n🗃 Configure font...")
             val name = InputUtils.promptString(

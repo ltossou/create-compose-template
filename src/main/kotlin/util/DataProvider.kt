@@ -1,11 +1,13 @@
 package util
 
-import model.Api
 import common.ResourceFileReader
+import model.Api
 
 object DataProvider {
 
     val fileReader = ResourceFileReader()
+
+    fun getTemplate(templateName: String) = fileReader.readContents("fileTemplates/$templateName.kt.ft")
 
     object API {
         val WMATA_METRO = Api(
@@ -18,7 +20,7 @@ object DataProvider {
                     json = fileReader.readContents("json/wmata.stations.json")
                 )
             ),
-            authentication = Api.AuthType.Header(key = "appId", value= "WMATA_KEY")
+            authentication = Api.AuthType.Header(key = "appId", value = "WMATA_KEY")
         )
 
         val SEATGEEK = Api(
@@ -31,7 +33,7 @@ object DataProvider {
                     json = fileReader.readContents("json/seatgeek.events.json")
                 )
             ),
-            authentication = Api.AuthType.Query(key = "client_id", value= "WMATA_KEY")
+            authentication = Api.AuthType.Query(key = "client_id", value = "WMATA_KEY")
         )
     }
 }

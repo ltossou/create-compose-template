@@ -4,7 +4,7 @@ import model.Api
 import JsonConverter
 import com.fractalwrench.json2kotlin.ConversionInfo
 import com.squareup.kotlinpoet.*
-import common.BaseGenerator
+import common.Generator
 import di.PackageProvider
 import common.Types
 import util.DataProvider
@@ -13,7 +13,7 @@ import util.println
 import java.nio.file.Path
 
 class RemoteDataSourceGenerator(projectPath: Path, packageProvider: PackageProvider) :
-    BaseGenerator(packageProvider, projectPath) {
+    Generator(packageProvider, projectPath) {
 
     fun start(api: Api, modelsResult: Map<String, ConversionInfo>) {
         generate(api, modelsResult)

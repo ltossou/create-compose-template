@@ -7,7 +7,7 @@ import util.InputUtils
 import util.println
 import com.google.gson.Gson
 import com.squareup.kotlinpoet.*
-import common.BaseGenerator
+import common.Generator
 import di.DependencyProvider
 import local.DatabaseGenerator
 import util.DataProvider
@@ -105,7 +105,7 @@ data class Api(
                 addEndpoint = InputUtils.getBoolean("\nAdd endpoint?", default = isFirst)
                 if (addEndpoint) {
                     val endpoint = InputUtils.promptString("Enter endpoint", true)
-                    val methods = Endpoint.Method.entries
+                    val methods = Endpoint.Method.values()
                     println(methods.mapIndexed { index, method -> "${index + 1}. ${method.name}" }
                         .joinToString(separator = " "))
                     val method = methods[InputUtils.getInt("Choose method", 1, methods.size) - 1]
@@ -156,7 +156,7 @@ data class Api(
     }
 
     class Generator(val api: Api, val dependencyProvider: DependencyProvider) :
-        BaseGenerator(dependencyProvider.packageProvider, dependencyProvider.projectPath) {
+        common.Generator(dependencyProvider.packageProvider, dependencyProvider.projectPath) {
 
         private val warnings = mutableListOf<String>()
 
@@ -284,7 +284,7 @@ data class Api(
 
         private fun getGenerationOptionsInput(): List<GeneratedApiFiles> {
             println(Color.YELLOW, "Choose files to generate")
-            val generatedFiles = GeneratedApiFiles.entries.toTypedArray()
+            val generatedFiles = GeneratedApiFiles.values()
             println("1. All")
             generatedFiles.forEachIndexed { index, file ->
                 println("${index + 2}. Only ${file.description}")

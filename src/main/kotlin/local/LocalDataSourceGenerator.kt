@@ -5,7 +5,7 @@ import model.Database
 import JsonConverter
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import common.BaseGenerator
+import common.Generator
 import di.PackageProvider
 import common.Types
 import util.DataProvider
@@ -17,7 +17,7 @@ class LocalDataSourceGenerator(
     projectPath: Path,
     packageProvider: PackageProvider
 ) :
-    BaseGenerator(packageProvider, projectPath) {
+    Generator(packageProvider, projectPath) {
 
     fun start(api: Api, db: Database) {
         generate(api, db)

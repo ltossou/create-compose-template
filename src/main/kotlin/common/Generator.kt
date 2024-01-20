@@ -1,14 +1,23 @@
 package common
 
-import util.InputUtils
 import com.squareup.kotlinpoet.FileSpec
 import di.PackageProvider
+import util.DataProvider
+import util.InputUtils
 import java.io.File
 import java.nio.file.Path
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 import kotlin.io.path.createDirectories
 import kotlin.io.path.div
+import kotlin.io.path.name
 
-abstract class BaseGenerator(protected val packageProvider: PackageProvider, protected val projectPath: Path) {
+abstract class Generator(protected val packageProvider: PackageProvider, protected val projectPath: Path) {
+
+    private val DEFAULT_TEMPLATE_PROPERTIES = mapOf(
+        TemplatePropertyKeys.APP_NAME to projectPath.name,
+        TemplatePropertyKeys.PACKAGE_NAME to packageProvider.root
+    )
 
     fun ifExport(relativePath: Path, filename: String = "", action: (relativePath: Path) -> Unit) {
         if (InputUtils.getBoolean(
@@ -24,7 +33,9 @@ abstract class BaseGenerator(protected val packageProvider: PackageProvider, pro
         fileSpec: FileSpec, index: Int = 1,
         count: Int = 1
     ) = askToExport(
-        relativePath = Path.of(fileSpec.packageName.replace("${packageProvider.root}.", "").replace(".", File.separator)),
+        relativePath = Path.of(
+            fileSpec.packageName.replace("${packageProvider.root}.", "").replace(".", File.separator)
+        ),
         fileSpec = fileSpec,
         index = index,
         count = count
@@ -37,7 +48,8 @@ abstract class BaseGenerator(protected val packageProvider: PackageProvider, pro
         index: Int = 1,
         count: Int = 1
     ) =
-        ifExport(Path.of(packageName.replace("${packageProvider.root}.", "").replace(".", File.separator)),
+        ifExport(
+            Path.of(packageName.replace("${packageProvider.root}.", "").replace(".", File.separator)),
             "$filename.kt"
         ) {
             writeFileToProject(filename, fileContent, it, index, count)
@@ -80,10 +92,53 @@ abstract class BaseGenerator(protected val packageProvider: PackageProvider, pro
         println("✔ Finished [$targetPath${File.separator}$filename]")
     }
 
+    fun createFromTemplateFile(
+        templateFile: String,
+        fileName: String,
+        properties: Map<String, Any>,
+        destPackage: String
+    ) {
+        createFromTemplate(DataProvider.getTemplate(templateFile), fileName, properties, destPackage)
+    }
+
+    fun createFromTemplate(template: String, fileName: String, properties: Map<String, Any>, destPackage: String) {
+        val fileContent = evaluateConditions(
+            (properties + DEFAULT_TEMPLATE_PROPERTIES).entries.fold(template) { acc, (key, value) ->
+                acc.replace("%%${key}%%", value.toString())
+            }, properties
+        )
+        println(fileContent)
+        askToExport(destPackage, fileName, fileContent)
+    }
+
+    fun evaluateConditions(fileContent: String, properties: Map<String, Any>): String {
+        var formatted = fileContent
+        val p: Pattern = Pattern.compile("\\#if(.*?)\\#end")
+        val m: Matcher = p.matcher(fileContent)
+        while (m.find()) {
+            val ifElseCondition = m.group(1)
+            val condition = ifElseCondition.replace("#if", "").replace("#end", "").trim()
+                .substringBefore(")")
+                .substringAfter("(")
+            val property = condition.substringBefore("==").trim().replace("\${", "").replace("}", "")
+            if (properties.containsKey(property)) {
+                val value = condition.substringAfter("==").trim()
+                if (properties[property] == value) {
+                    formatted =
+                        formatted.replace(ifElseCondition, ifElseCondition.substringAfter(")").substringBefore("#end"))
+                    continue
+                }
+            }
+            formatted = formatted.replace(ifElseCondition, "")
+        }
+        return formatted
+    }
+
     private fun Path.getAbsolutePathFromProject() =
         (projectPath.toAbsolutePath() / "app/src/main/java" / packageProvider.root.replace(
             ".",
             File.separator
         )
                 / this)
+
 }

@@ -4,7 +4,7 @@ import model.Database
 import JsonConverter
 import com.fractalwrench.json2kotlin.ConversionInfo
 import com.squareup.kotlinpoet.*
-import common.BaseGenerator
+import common.Generator
 import di.PackageProvider
 import common.Types
 import util.DataProvider
@@ -19,7 +19,7 @@ import java.nio.file.Path
  *  * Daos
  */
 class DatabaseGenerator(projectPath: Path, packageProvider: PackageProvider) :
-    BaseGenerator(packageProvider, projectPath) {
+    Generator(packageProvider, projectPath) {
 
     data class Result(val db: Database, val warnings: List<String>)
 
