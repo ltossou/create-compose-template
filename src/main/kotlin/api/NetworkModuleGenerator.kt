@@ -167,7 +167,7 @@ class NetworkModuleGenerator(private val packageProvider: PackageProvider) {
                                 is Api.AuthType.Query -> """
                                     return Interceptor { chain ->
             val url = chain.request().url.newBuilder()
-                .removeAllQueryParameters("client_id")
+                .removeAllQueryParameters("${api.authentication.key}")
                 .addQueryParameter("${api.authentication.key}", ${api.buildConfigApiKey})
                 .build()
             val builder = chain.request().newBuilder()
@@ -345,6 +345,8 @@ class NetworkModuleGenerator(private val packageProvider: PackageProvider) {
         // }
         return addFunction(
             FunSpec.builder("provide${api.name.capitalize()}Api")
+                .addAnnotation(DAGGER_PROVIDES)
+                .addAnnotation(JAVAX_SINGLETON)
                 .returns(ClassName(packageProvider.apis(api.name), "${api.name.capitalize()}Api"))
                 .addParameter(
                     ParameterSpec.builder("retrofit", RETROFIT)

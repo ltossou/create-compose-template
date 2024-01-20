@@ -23,7 +23,7 @@ object DataProvider {
 
         val SEATGEEK = Api(
             name = "seatgeek",
-            baseUrl = "api.seatgeek.com/2",
+            baseUrl = "https://api.seatgeek.com/2",
             endpoints = listOf(
                 Api.Endpoint(
                     method = Api.Endpoint.Method.GET,

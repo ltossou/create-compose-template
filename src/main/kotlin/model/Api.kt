@@ -85,10 +85,14 @@ data class Api(
         fun input(): Api {
             val name = InputUtils.promptString("Enter API name", true)
             val inputUrl = InputUtils.promptString("Enter base URL", true)
-            val url = if (!inputUrl.endsWith("/")) {
+            var url = if (!inputUrl.endsWith("/")) {
                 "$inputUrl/"
             } else {
                 inputUrl
+            }
+
+            if (!inputUrl.startsWith("http")) {
+                url = "https://$url"
             }
 
             val authType = inputAuthentication()

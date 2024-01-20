@@ -14,7 +14,7 @@ class PackageProvider(val root: String) {
 
     fun di() = "$root.di"
 
-    fun repositories(apiName: String) = "$root.data.local.repository.$apiName".lowercase()
+    fun repositories(apiName: String) = "$root.data.repository.$apiName".lowercase()
 
     fun apis(apiName: String) = "$root.data.api.$apiName".lowercase()
     fun apis(api: Api) = apis(api.name.lowercase())

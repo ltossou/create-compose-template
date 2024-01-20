@@ -18,6 +18,8 @@ class RepositoryGeneratorTest {
 
     @Test
     fun generate() {
-        println(generator.generate(api = DataProvider.API.SEATGEEK, localSource = true).build())
+        println(generator.generate(api = DataProvider.API.SEATGEEK, localSource = true, entities = emptyList(),
+            models = emptyMap()
+        ).build())
     }
 }

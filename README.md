@@ -42,26 +42,26 @@
 
 ## ✨ Features
 
-- 100% Kotlin, 100% [JetPack Compose](https://developer.android.com/jetpack/compose)
-- Following MVVM Architectural Design Pattern
+- 🤖 100% Kotlin, 100% [JetPack Compose](https://developer.android.com/jetpack/compose)
+- 🏛 Following MVVM Architectural Design Pattern
 - Following Repository pattern
-- Mapper between domain <-> local models
-- [Coroutines](https://developer.android.com/kotlin/coroutines) - A concurrency design pattern library
-- [Flow](https://developer.android.com/kotlin/flow) - Built on top of coroutines and is stream of data that can be computed asynchronously
-- [Hilt](https://dagger.dev/hilt/) modules - Dependency Injection framework (NetworkModule, DatabaseModule)
-- [Room](https://developer.android.com/training/data-storage/room) modules - Database (Entities, Daos)
-- [Retrofit](https://github.com/square/retrofit) - HTTP client
-- [Moshi](https://github.com/square/moshi) - JSON Moshi library
-- API authentication via header or query parameters
-- [Timber](https://github.com/JakeWharton/timber) - Log
-- [Material Components](https://github.com/material-components/material-components-android) - Material Design
-- [Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) - Alternative syntax to
+- 🔁 Mapper between domain <-> local models
+- 🌊 [Coroutines](https://developer.android.com/kotlin/coroutines) - A concurrency design pattern library
+- 🏄🏾‍♀️️ [Flow](https://developer.android.com/kotlin/flow) - Built on top of coroutines and is stream of data that can be computed asynchronously
+- 💉 [Hilt](https://dagger.dev/hilt/) modules - Dependency Injection framework (NetworkModule, DatabaseModule)
+- ⛓ [Room](https://developer.android.com/training/data-storage/room) modules - Database (Entities, Daos)
+- 🌐 [Retrofit](https://github.com/square/retrofit) - HTTP client
+- 📄 [Moshi](https://github.com/square/moshi) - JSON Moshi library
+- 🔒 API authentication via header or query parameters
+- 🪓 [Timber](https://github.com/JakeWharton/timber) - Log
+- 🎨 [Material Components](https://github.com/material-components/material-components-android) - Material Design
+- 📜 [Kotlin DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html) - Alternative syntax to
   the Groovy DSL
-- [Navigation](https://developer.android.com/guide/navigation) - Navigate through the app
-- [Chucker](https://github.com/ChuckerTeam/chucker) - An HTTP inspector for Android & OkHTTP
-- [Dark/Light Theme](https://developer.android.com/guide/topics/ui/look-and-feel/darktheme) -
+- 🗺 [Navigation](https://developer.android.com/guide/navigation) - Navigate through the app
+- 🕵🏾‍♀️ [Chucker](https://github.com/ChuckerTeam/chucker) - An HTTP inspector for Android & OkHTTP
+- 🌓 [Dark/Light Theme](https://developer.android.com/guide/topics/ui/look-and-feel/darktheme) -
   Support dark/light themes
-- [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) - Data storage
+- 🏪 [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) - Data storage
   solution that allows you to store key-value pairs or typed objects
 - 🖋 [Google Font](https://fonts.google.com/) - Custom Google Font
 

@@ -220,18 +220,19 @@ class Roboto(
         val defaultAndroidDir = Path(System.getProperty("user.home")) / "AndroidStudioProjects"
         if (parentFolder == defaultAndroidDir) {
             println("0. New project")
-            val androidProjects = defaultAndroidDir.toFile().listFiles()
-            androidProjects.forEachIndexed { index, file -> println("${index + 1}. ${file.name}") }
-            // defaultAndroidDir.toFile().walk().forEachIndexed { index, file ->
-            //     print("${index + 1}. ${file.name}")
-            // }
-            val projectSelection = InputUtils.getInt(
-                "Choose project #",
-                0,
-                defaultAndroidDir.toFile().length().toInt()
-            )
-            if (projectSelection != 0) {
-                return parentFolder / androidProjects.get(projectSelection - 1).name
+            defaultAndroidDir.toFile().listFiles()?.let { androidProjects ->
+                androidProjects.forEachIndexed { index, file -> println("${index + 1}. ${file.name}") }
+                // defaultAndroidDir.toFile().walk().forEachIndexed { index, file ->
+                //     print("${index + 1}. ${file.name}")
+                // }
+                val projectSelection = InputUtils.getInt(
+                    "Choose project #",
+                    0,
+                    defaultAndroidDir.toFile().length().toInt()
+                )
+                if (projectSelection != 0) {
+                    return parentFolder / androidProjects[projectSelection - 1].name
+                }
             }
         }
         return parentFolder / InputUtils.promptString("Enter project name", true)

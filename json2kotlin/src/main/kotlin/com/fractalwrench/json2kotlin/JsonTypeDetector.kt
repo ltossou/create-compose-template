@@ -7,6 +7,7 @@ import com.google.gson.JsonPrimitive
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import java.util.*
+import kotlin.reflect.KClass
 
 /**
  * Deduces the TypeName for a JSON field value. For a primitive such as a String, this is a simple operation.
@@ -23,9 +24,11 @@ internal class JsonTypeDetector {
     /**
      * Determines an returns the TypeName for a JSONElement
      */
-    internal fun typeForJsonElement(jsonElement: JsonElement,
-                                    key: String,
-                                    jsonElementMap: Map<JsonElement, TypeSpec>): TypeName {
+    internal fun typeForJsonElement(
+        jsonElement: JsonElement,
+        key: String,
+        jsonElementMap: Map<JsonElement, TypeSpec>
+    ): TypeName {
         with(jsonElement) {
             return when {
                 isJsonPrimitive -> typeForJsonPrimitive(asJsonPrimitive)
@@ -40,23 +43,46 @@ internal class JsonTypeDetector {
     private fun typeForJsonPrimitive(primitive: JsonPrimitive): TypeName {
         return when {
             primitive.isBoolean -> Boolean::class
-            primitive.isNumber -> Number::class
+            primitive.isNumber -> typeForNumberPrimitive(primitive)
             primitive.isString -> String::class
             else -> throw IllegalStateException("No type found for JSON primitive " + primitive)
         }.asTypeName()
     }
 
-    private fun typeForJsonObject(jsonObject: JsonObject,
-                                  key: String,
-                                  jsonElementMap: Map<JsonElement, TypeSpec>): TypeName {
+    private fun typeForNumberPrimitive(primitive: JsonPrimitive): KClass<out Number> {
+        try {
+            if (primitive.asString.contains(".") || primitive.asString.contains(",")) {
+                primitive.asDouble
+                return Double::class
+            }
+        } catch (ignore: NumberFormatException) { }
+        try {
+            primitive.asInt
+            return Int::class
+        } catch (e: NumberFormatException) {
+            try {
+                primitive.asLong
+                return Long::class
+            } catch (_: NumberFormatException) { }
+        }
+        return Number::class
+    }
+
+    private fun typeForJsonObject(
+        jsonObject: JsonObject,
+        key: String,
+        jsonElementMap: Map<JsonElement, TypeSpec>
+    ): TypeName {
         val existingTypeName = jsonElementMap[jsonObject]
         val identifier = existingTypeName?.name ?: key.toKotlinIdentifier().capitalize()
         return ClassName.bestGuess(identifier)
     }
 
-    private fun typeForJsonArray(jsonArray: JsonArray,
-                                 key: String,
-                                 jsonElementMap: Map<JsonElement, TypeSpec>): TypeName {
+    private fun typeForJsonArray(
+        jsonArray: JsonArray,
+        key: String,
+        jsonElementMap: Map<JsonElement, TypeSpec>
+    ): TypeName {
         val pair = findAllArrayTypes(jsonArray, key, jsonElementMap)
         val arrayTypes = pair.first
         val nullable = pair.second
@@ -65,9 +91,11 @@ internal class JsonTypeDetector {
         return List::class.asClassName().parameterizedBy(arrayType)
     }
 
-    private fun findAllArrayTypes(jsonArray: JsonArray,
-                                  key: String,
-                                  jsonElementMap: Map<JsonElement, TypeSpec>): Pair<HashSet<TypeName>, Boolean> {
+    private fun findAllArrayTypes(
+        jsonArray: JsonArray,
+        key: String,
+        jsonElementMap: Map<JsonElement, TypeSpec>
+    ): Pair<HashSet<TypeName>, Boolean> {
         val arrayTypes = HashSet<TypeName>()
         var nullable = false
 

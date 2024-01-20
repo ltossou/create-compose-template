@@ -30,7 +30,251 @@
         "metro_code": 511,
         "capacity": 0,
         "display_location": "Washington, DC"
-      }
+      },
+      "datetime_tbd": false,
+      "performers": [
+        {
+          "type": "band",
+          "name": "Jamiroquai",
+          "image": "https://seatgeek.com/images/performers-landscape/jamiroquai-960568/7246/huge.jpg",
+          "id": 7246,
+          "images": {
+            "huge": "https://seatgeek.com/images/performers-landscape/jamiroquai-960568/7246/huge.jpg"
+          },
+          "divisions": null,
+          "links": [],
+          "has_upcoming_events": false,
+          "primary": true,
+          "stats": {
+            "event_count": 0
+          },
+          "taxonomies": [
+            {
+              "id": 2000000,
+              "name": "concerts",
+              "parent_id": null,
+              "rank": 1
+            }
+          ],
+          "image_attribution": "Mauricio Santana / Getty Images Entertainment / Getty Images",
+          "url": "https://seatgeek.com/jamiroquai-tickets",
+          "score": 0,
+          "slug": "jamiroquai",
+          "home_venue_id": null,
+          "short_name": "Jamiroquai",
+          "num_upcoming_events": 0,
+          "colors": null,
+          "image_license": "rightsmanaged",
+          "genres": [
+            {
+              "id": 472,
+              "name": "Classic Rock",
+              "slug": "classic-rock",
+              "primary": true,
+              "images": {
+                "1200x525": "https://seatgeek.com/images/performers-landscape/billy-joel-963c4b/303/1200x525.jpg",
+                "1200x627": "https://seatgeek.com/images/performers-landscape/billy-joel-51ea80/303/1200x627.jpg",
+                "136x136": "https://seatgeek.com/images/performers-landscape/billy-joel-81dc28/303/136x136.jpg",
+                "500_700": "https://seatgeek.com/images/performers-landscape/billy-joel-f4fca8/303/500_700.jpg",
+                "800x320": "https://seatgeek.com/images/performers-landscape/billy-joel-76fcda/303/800x320.jpg",
+                "banner": "https://seatgeek.com/images/performers-landscape/billy-joel-d60a9a/303/banner.jpg",
+                "block": "https://seatgeek.com/images/performers-landscape/billy-joel-541c76/303/block.jpg",
+                "criteo_130_160": "https://seatgeek.com/images/performers-landscape/billy-joel-498ad1/303/criteo_130_160.jpg",
+                "criteo_170_235": "https://seatgeek.com/images/performers-landscape/billy-joel-24b3a5/303/criteo_170_235.jpg",
+                "criteo_205_100": "https://seatgeek.com/images/performers-landscape/billy-joel-81644a/303/criteo_205_100.jpg",
+                "criteo_400_300": "https://seatgeek.com/images/performers-landscape/billy-joel-04a480/303/criteo_400_300.jpg",
+                "fb_100x72": "https://seatgeek.com/images/performers-landscape/billy-joel-547697/303/fb_100x72.jpg",
+                "fb_600_315": "https://seatgeek.com/images/performers-landscape/billy-joel-03548e/303/fb_600_315.jpg",
+                "huge": "https://seatgeek.com/images/performers-landscape/billy-joel-477989/303/huge.jpg",
+                "ipad_event_modal": "https://seatgeek.com/images/performers-landscape/billy-joel-eb7d49/303/ipad_event_modal.jpg",
+                "ipad_header": "https://seatgeek.com/images/performers-landscape/billy-joel-6843a6/303/ipad_header.jpg",
+                "ipad_mini_explore": "https://seatgeek.com/images/performers-landscape/billy-joel-e3928b/303/ipad_mini_explore.jpg",
+                "mongo": "https://seatgeek.com/images/performers-landscape/billy-joel-d82d53/303/mongo.jpg",
+                "square_mid": "https://seatgeek.com/images/performers-landscape/billy-joel-d1244f/303/square_mid.jpg",
+                "triggit_fb_ad": "https://seatgeek.com/images/performers-landscape/billy-joel-d4a996/303/triggit_fb_ad.jpg"
+              },
+              "image": "https://seatgeek.com/images/performers-landscape/billy-joel-477989/303/huge.jpg"
+            },
+            {
+              "id": 468,
+              "name": "Jazz",
+              "slug": "jazz",
+              "primary": false,
+              "images": {
+                "1200x525": "https://seatgeek.com/images/performers-landscape/adele-766d00/141/1200x525.jpg",
+                "1200x627": "https://seatgeek.com/images/performers-landscape/adele-7ede34/141/1200x627.jpg",
+                "136x136": "https://seatgeek.com/images/performers-landscape/adele-4277ec/141/136x136.jpg",
+                "500_700": "https://seatgeek.com/images/performers-landscape/adele-74c79a/141/500_700.jpg",
+                "800x320": "https://seatgeek.com/images/performers-landscape/adele-676e42/141/800x320.jpg",
+                "banner": "https://seatgeek.com/images/performers-landscape/adele-232cda/141/banner.jpg",
+                "block": "https://seatgeek.com/images/performers-landscape/adele-7f3828/141/block.jpg",
+                "criteo_130_160": "https://seatgeek.com/images/performers-landscape/adele-cd8591/141/criteo_130_160.jpg",
+                "criteo_170_235": "https://seatgeek.com/images/performers-landscape/adele-3228f1/141/criteo_170_235.jpg",
+                "criteo_205_100": "https://seatgeek.com/images/performers-landscape/adele-6508af/141/criteo_205_100.jpg",
+                "criteo_400_300": "https://seatgeek.com/images/performers-landscape/adele-04b6c3/141/criteo_400_300.jpg",
+                "fb_100x72": "https://seatgeek.com/images/performers-landscape/adele-92bebf/141/fb_100x72.jpg",
+                "fb_600_315": "https://seatgeek.com/images/performers-landscape/adele-d75312/141/fb_600_315.jpg",
+                "huge": "https://seatgeek.com/images/performers-landscape/adele-1bfcdc/141/huge.jpg",
+                "ipad_event_modal": "https://seatgeek.com/images/performers-landscape/adele-17961f/141/ipad_event_modal.jpg",
+                "ipad_header": "https://seatgeek.com/images/performers-landscape/adele-05eb3f/141/ipad_header.jpg",
+                "ipad_mini_explore": "https://seatgeek.com/images/performers-landscape/adele-0b67fe/141/ipad_mini_explore.jpg",
+                "mongo": "https://seatgeek.com/images/performers-landscape/adele-280540/141/mongo.jpg",
+                "square_mid": "https://seatgeek.com/images/performers-landscape/adele-77b00a/141/square_mid.jpg",
+                "triggit_fb_ad": "https://seatgeek.com/images/performers-landscape/adele-a3ee67/141/triggit_fb_ad.jpg"
+              },
+              "image": "https://seatgeek.com/images/performers-landscape/adele-1bfcdc/141/huge.jpg"
+            },
+            {
+              "id": 452,
+              "name": "Pop",
+              "slug": "pop",
+              "primary": false,
+              "images": {
+                "1200x525": "https://seatgeek.com/images/performers-landscape/drake-b29aab/2351/1200x525.jpg",
+                "1200x627": "https://seatgeek.com/images/performers-landscape/drake-80d011/2351/1200x627.jpg",
+                "136x136": "https://seatgeek.com/images/performers-landscape/drake-ca8205/2351/136x136.jpg",
+                "500_700": "https://seatgeek.com/images/performers-landscape/drake-1d9013/2351/500_700.jpg",
+                "800x320": "https://seatgeek.com/images/performers-landscape/drake-40f192/2351/800x320.jpg",
+                "banner": "https://seatgeek.com/images/performers-landscape/drake-6fd342/2351/banner.jpg",
+                "block": "https://seatgeek.com/images/performers-landscape/drake-915735/2351/block.jpg",
+                "criteo_130_160": "https://seatgeek.com/images/performers-landscape/drake-7e9c74/2351/criteo_130_160.jpg",
+                "criteo_170_235": "https://seatgeek.com/images/performers-landscape/drake-6ee009/2351/criteo_170_235.jpg",
+                "criteo_205_100": "https://seatgeek.com/images/performers-landscape/drake-2f0d71/2351/criteo_205_100.jpg",
+                "criteo_400_300": "https://seatgeek.com/images/performers-landscape/drake-ede946/2351/criteo_400_300.jpg",
+                "fb_100x72": "https://seatgeek.com/images/performers-landscape/drake-9d504e/2351/fb_100x72.jpg",
+                "fb_600_315": "https://seatgeek.com/images/performers-landscape/drake-2cd846/2351/fb_600_315.jpg",
+                "huge": "https://seatgeek.com/images/performers-landscape/drake-6f7a36/2351/huge.jpg",
+                "ipad_event_modal": "https://seatgeek.com/images/performers-landscape/drake-d348e8/2351/ipad_event_modal.jpg",
+                "ipad_header": "https://seatgeek.com/images/performers-landscape/drake-31df3d/2351/ipad_header.jpg",
+                "ipad_mini_explore": "https://seatgeek.com/images/performers-landscape/drake-35a99f/2351/ipad_mini_explore.jpg",
+                "mongo": "https://seatgeek.com/images/performers-landscape/drake-97d814/2351/mongo.jpg",
+                "square_mid": "https://seatgeek.com/images/performers-landscape/drake-bbe912/2351/square_mid.jpg",
+                "triggit_fb_ad": "https://seatgeek.com/images/performers-landscape/drake-956e60/2351/triggit_fb_ad.jpg"
+              },
+              "image": "https://seatgeek.com/images/performers-landscape/drake-6f7a36/2351/huge.jpg"
+            },
+            {
+              "id": 493,
+              "name": "Rap",
+              "slug": "rap",
+              "primary": false,
+              "images": {
+                "1200x525": "https://seatgeek.com/images/performers-landscape/playboi-carti-6ffe45/364380/1200x525.jpg",
+                "1200x627": "https://seatgeek.com/images/performers-landscape/playboi-carti-153d6c/364380/1200x627.jpg",
+                "136x136": "https://seatgeek.com/images/performers-landscape/playboi-carti-364ce5/364380/136x136.jpg",
+                "500_700": "https://seatgeek.com/images/performers-landscape/playboi-carti-f8cb49/364380/500_700.jpg",
+                "800x320": "https://seatgeek.com/images/performers-landscape/playboi-carti-9f3313/364380/800x320.jpg",
+                "banner": "https://seatgeek.com/images/performers-landscape/playboi-carti-712b9f/364380/banner.jpg",
+                "block": "https://seatgeek.com/images/performers-landscape/playboi-carti-fc14b7/364380/block.jpg",
+                "criteo_130_160": "https://seatgeek.com/images/performers-landscape/playboi-carti-43b260/364380/criteo_130_160.jpg",
+                "criteo_170_235": "https://seatgeek.com/images/performers-landscape/playboi-carti-708cd8/364380/criteo_170_235.jpg",
+                "criteo_205_100": "https://seatgeek.com/images/performers-landscape/playboi-carti-c99a97/364380/criteo_205_100.jpg",
+                "criteo_400_300": "https://seatgeek.com/images/performers-landscape/playboi-carti-5560c5/364380/criteo_400_300.jpg",
+                "fb_100x72": "https://seatgeek.com/images/performers-landscape/playboi-carti-891368/364380/fb_100x72.jpg",
+                "fb_600_315": "https://seatgeek.com/images/performers-landscape/playboi-carti-446faa/364380/fb_600_315.jpg",
+                "huge": "https://seatgeek.com/images/performers-landscape/playboi-carti-f1b02b/364380/huge.jpg",
+                "ipad_event_modal": "https://seatgeek.com/images/performers-landscape/playboi-carti-d82077/364380/ipad_event_modal.jpg",
+                "ipad_header": "https://seatgeek.com/images/performers-landscape/playboi-carti-b4dcdd/364380/ipad_header.jpg",
+                "ipad_mini_explore": "https://seatgeek.com/images/performers-landscape/playboi-carti-3f8064/364380/ipad_mini_explore.jpg",
+                "mongo": "https://seatgeek.com/images/performers-landscape/playboi-carti-16434d/364380/mongo.jpg",
+                "square_mid": "https://seatgeek.com/images/performers-landscape/playboi-carti-e35894/364380/square_mid.jpg",
+                "triggit_fb_ad": "https://seatgeek.com/images/performers-landscape/playboi-carti-daed8f/364380/triggit_fb_ad.jpg"
+              },
+              "image": "https://seatgeek.com/images/performers-landscape/playboi-carti-f1b02b/364380/huge.jpg"
+            },
+            {
+              "id": 456,
+              "name": "Rock",
+              "slug": "rock",
+              "primary": false,
+              "images": {
+                "1200x525": "https://seatgeek.com/images/performers-landscape/taylor-swift-95bfc1/35/1200x525.jpg",
+                "1200x627": "https://seatgeek.com/images/performers-landscape/taylor-swift-5aed70/35/1200x627.jpg",
+                "136x136": "https://seatgeek.com/images/performers-landscape/taylor-swift-ea1e7e/35/136x136.jpg",
+                "500_700": "https://seatgeek.com/images/performers-landscape/taylor-swift-23f9f5/35/500_700.jpg",
+                "800x320": "https://seatgeek.com/images/performers-landscape/taylor-swift-1ad124/35/800x320.jpg",
+                "banner": "https://seatgeek.com/images/performers-landscape/taylor-swift-397e97/35/banner.jpg",
+                "block": "https://seatgeek.com/images/performers-landscape/taylor-swift-9e502b/35/block.jpg",
+                "criteo_130_160": "https://seatgeek.com/images/performers-landscape/taylor-swift-310144/35/criteo_130_160.jpg",
+                "criteo_170_235": "https://seatgeek.com/images/performers-landscape/taylor-swift-19e3f0/35/criteo_170_235.jpg",
+                "criteo_205_100": "https://seatgeek.com/images/performers-landscape/taylor-swift-92ebf3/35/criteo_205_100.jpg",
+                "criteo_400_300": "https://seatgeek.com/images/performers-landscape/taylor-swift-bab6e1/35/criteo_400_300.jpg",
+                "fb_100x72": "https://seatgeek.com/images/performers-landscape/taylor-swift-c1dbf4/35/fb_100x72.jpg",
+                "fb_600_315": "https://seatgeek.com/images/performers-landscape/taylor-swift-15afb9/35/fb_600_315.jpg",
+                "huge": "https://seatgeek.com/images/performers-landscape/taylor-swift-c1e4b6/35/huge.jpg",
+                "ipad_event_modal": "https://seatgeek.com/images/performers-landscape/taylor-swift-3ebde5/35/ipad_event_modal.jpg",
+                "ipad_header": "https://seatgeek.com/images/performers-landscape/taylor-swift-a807ae/35/ipad_header.jpg",
+                "ipad_mini_explore": "https://seatgeek.com/images/performers-landscape/taylor-swift-69d4a9/35/ipad_mini_explore.jpg",
+                "mongo": "https://seatgeek.com/images/performers-landscape/taylor-swift-5a3f01/35/mongo.jpg",
+                "square_mid": "https://seatgeek.com/images/performers-landscape/taylor-swift-db2f1f/35/square_mid.jpg",
+                "triggit_fb_ad": "https://seatgeek.com/images/performers-landscape/taylor-swift-c3abf8/35/triggit_fb_ad.jpg"
+              },
+              "image": "https://seatgeek.com/images/performers-landscape/taylor-swift-c1e4b6/35/huge.jpg"
+            }
+          ],
+          "popularity": 0,
+          "location": null,
+          "image_rights_message": "(c) Mauricio Santana / Getty Images Entertainment / Getty Images",
+          "themes": [],
+          "domain_information": []
+        }
+      ],
+      "is_open": false,
+      "links": [],
+      "datetime_local": "2023-08-14T19:00:00",
+      "time_tbd": false,
+      "short_title": "Ali Wong",
+      "visible_until_utc": "2023-08-15T03:00:00",
+      "stats": {
+        "listing_count": 3,
+        "average_price": 233,
+        "lowest_price_good_deals": null,
+        "lowest_price": 197,
+        "highest_price": 302,
+        "visible_listing_count": 3,
+        "dq_bucket_counts": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "median_price": 206,
+        "lowest_sg_base_price": 145,
+        "lowest_sg_base_price_good_deals": null
+      },
+      "taxonomies": [
+        {
+          "id": 3000000,
+          "name": "theater",
+          "parent_id": null,
+          "rank": 7
+        },
+        {
+          "id": 3040000,
+          "name": "comedy",
+          "parent_id": 3000000,
+          "rank": 8
+        }
+      ],
+      "url": "https://seatgeek.com/ali-wong-tickets/comedy/2023-08-14-7-pm/5967110",
+      "score": 0.496,
+      "announce_date": "2023-03-13T00:00:00",
+      "created_at": "2023-03-13T16:53:33",
+      "date_tbd": false,
+      "title": "Ali Wong",
+      "popularity": 0.788,
+      "description": "",
+      "status": "normal",
+      "access_method": null,
+      "event_promotion": null,
+      "announcements": {},
+      "conditional": false,
+      "enddatetime_utc": null,
+      "visible_at": "2023-04-18T01:10:02Z"
     }
   ]
 }

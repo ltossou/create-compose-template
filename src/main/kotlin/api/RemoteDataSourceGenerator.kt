@@ -74,7 +74,7 @@ class RemoteDataSourceGenerator(projectPath: Path, packageProvider: PackageProvi
             )
 
         }
-        val fileSpec = FileSpec.builder(packageProvider.apis(api), className)
+        val fileSpec = FileSpec.builder(packageProvider.repositories(api.name), className)
             .addType(classBuilder.build())
             .build()
             .println()
