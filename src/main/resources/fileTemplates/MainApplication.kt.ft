@@ -1,0 +1,31 @@
+package %%PACKAGE_NAME%%
+
+import android.app.Application
+#if (${USE_LIBRARY_WORKMANAGER} == "true") import androidx.hilt.work.HiltWorkerFactory #end
+#if (${USE_LIBRARY_WORKMANAGER} == "true") import androidx.work.Configuration #end
+#if (${DEPENDENCY_INJECTION} == "HILT") import dagger.hilt.android.HiltAndroidApp #end
+#if (${USE_LIBRARY_TIMBER} == "true") import timber.log.Timber #end
+#if (${USE_LIBRARY_WORKMANAGER} == "true") import javax.inject.Inject #end
+
+#if (${DEPENDENCY_INJECTION} == "HILT") @HiltAndroidApp #end
+class MainApplication : Application() #if (${USE_LIBRARY_WORKMANAGER} == "true"), Configuration.Provider #end {
+
+    override fun onCreate() {
+        super.onCreate()
+#if (${USE_LIBRARY_TIMBER} == "true")
+
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
+#end
+    }
+#if (${USE_LIBRARY_WORKMANAGER} == "true")
+
+    @Inject
+    lateinit var workerFactory: HiltWorkerFactory
+
+    override val workManagerConfiguration: Configuration
+        get() = Configuration.Builder()
+            .setWorkerFactory(workerFactory)
+            .build() #end
+}

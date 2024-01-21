@@ -1,9 +1,13 @@
 import di.DependencyProvider
 import font.FontGenerator
+import mainapp.ApplicationClassGenerator
+import model.AndroidLibraries
 import util.Color
 import util.InputUtils
 import util.unzip
 import model.Api
+import model.Font
+import model.Project
 import java.io.File
 import java.io.FileOutputStream
 import java.net.URL
@@ -171,7 +175,7 @@ class Roboto(
     val projectName: String
     val packageName: String
     val projectDirName: String
-
+    private lateinit var dependencyProvider: DependencyProvider
 
     init {
         repoName = githubRepoUrl.split("/").last()
@@ -194,6 +198,7 @@ class Roboto(
         // Dir name will be always in kebab case
         projectDirName = projectName.lowercase().replace(" ", "-")
 
+        dependencyProvider = DependencyProvider(packageName, projectPath)
     }
 
     private fun findProjectPackageName(projectPath: Path): String? {
@@ -263,16 +268,47 @@ class Roboto(
     fun start() {
         println("💻 Initializing...")
 
-        generateFont()
+        val projectBuilder = Project.Builder(projectName)
+            .setPath(projectPath)
+            .setPackageName(packageName)
+
+        // Android libs
+        projectBuilder.setLibraries(selectLibraries())
+
+        // Font
+        val fontResult = generateFont()
+        projectBuilder.setFont(if (fontResult is FontGenerator.Result.Success) fontResult.font else Font.DEFAULT)
+
+        // MainApp
+        generateApplicationClass(projectBuilder.libraries)
+
         createApi(projectPath)
     }
 
-    private fun generateFont() {
-        val provider = DependencyProvider(packageName, projectPath)
-        val fontResult = provider.fontGenerator.start()
+    private fun selectLibraries(): List<AndroidLibraries> {
+        val libraries = AndroidLibraries.values()
+        libraries.forEachIndexed { index, lib -> println("${index + 1}. ${lib.name}") }
+        val options = InputUtils.promptString("Choose the libraries you're using (separated by space)", true)
+            .split(" ")
+            .mapNotNull { it.trim().toIntOrNull() }
+            .filter { it >= 1 && it <= libraries.size + 1 }
+        return options.map { libraries[it - 1] }
+    }
+
+    private fun generateFont(): FontGenerator.Result {
+        val fontResult = dependencyProvider.fontGenerator.start()
         if (fontResult is FontGenerator.Result.Success && fontResult.warnings.isNotEmpty()) {
             util.println(Color.YELLOW, "Warnings:\n\t *${fontResult.warnings.joinToString(separator = "\n\t*")}")
         }
+        return fontResult
+    }
+
+    private fun generateApplicationClass(libraries: List<AndroidLibraries>): ApplicationClassGenerator.Result {
+        val appResult = dependencyProvider.appClassGenerator.start(libraries)
+        if (appResult is ApplicationClassGenerator.Result.Success && appResult.warnings.isNotEmpty()) {
+            util.println(Color.YELLOW, "Warnings:\n\t *${appResult.warnings.joinToString(separator = "\n\t*")}")
+        }
+        return appResult
     }
 
     fun start(

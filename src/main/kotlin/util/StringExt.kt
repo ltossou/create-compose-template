@@ -5,3 +5,5 @@ fun String.toSnakeCase() = split(Regex("(?=\\p{Upper})")).joinToString(separator
 fun String.toCamelCase(): String = split("_")
     .mapIndexed { index, s -> if (index > 0) s.capitalize() else s }
     .joinToString(separator = "")
+
+fun String.remove(text: String) = replace(text, "")

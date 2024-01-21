@@ -2,8 +2,11 @@ package common
 
 import com.squareup.kotlinpoet.FileSpec
 import di.PackageProvider
+import model.Package
 import util.DataProvider
 import util.InputUtils
+import util.getAbsolutePathFromProject
+import util.remove
 import java.io.File
 import java.nio.file.Path
 import java.util.regex.Matcher
@@ -49,7 +52,7 @@ abstract class Generator(protected val packageProvider: PackageProvider, protect
         count: Int = 1
     ) =
         ifExport(
-            Path.of(packageName.replace("${packageProvider.root}.", "").replace(".", File.separator)),
+            Package(packageName).toRelativeDirectory(packageProvider),
             "$filename.kt"
         ) {
             writeFileToProject(filename, fileContent, it, index, count)
@@ -113,32 +116,27 @@ abstract class Generator(protected val packageProvider: PackageProvider, protect
 
     fun evaluateConditions(fileContent: String, properties: Map<String, Any>): String {
         var formatted = fileContent
-        val p: Pattern = Pattern.compile("\\#if(.*?)\\#end")
+        val p: Pattern = Pattern.compile("\\#if(.*?)\\#end", Pattern.DOTALL /* Multiline */)
         val m: Matcher = p.matcher(fileContent)
         while (m.find()) {
-            val ifElseCondition = m.group(1)
-            val condition = ifElseCondition.replace("#if", "").replace("#end", "").trim()
+            val ifElseCondition = m.group(0)
+            val condition = ifElseCondition.remove("#if").remove("#end")
                 .substringBefore(")")
                 .substringAfter("(")
-            val property = condition.substringBefore("==").trim().replace("\${", "").replace("}", "")
+            val property = condition.substringBefore("==").trim().replace("\${", "").remove("}")
             if (properties.containsKey(property)) {
-                val value = condition.substringAfter("==").trim()
+                val value = condition.substringAfter("==").remove("\"").trim()
                 if (properties[property] == value) {
                     formatted =
-                        formatted.replace(ifElseCondition, ifElseCondition.substringAfter(")").substringBefore("#end"))
+                        formatted.replace(ifElseCondition, ifElseCondition.substringAfter(")").substringBefore("#end").trim())
                     continue
                 }
             }
-            formatted = formatted.replace(ifElseCondition, "")
+            val singleLineCondition = ifElseCondition.remove("\r\n")
+            formatted = formatted.replace(ifElseCondition, singleLineCondition).remove(singleLineCondition)
         }
         return formatted
     }
 
-    private fun Path.getAbsolutePathFromProject() =
-        (projectPath.toAbsolutePath() / "app/src/main/java" / packageProvider.root.replace(
-            ".",
-            File.separator
-        )
-                / this)
-
+    private fun Path.getAbsolutePathFromProject() = getAbsolutePathFromProject(projectPath, packageProvider.root)
 }

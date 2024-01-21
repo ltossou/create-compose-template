@@ -2,15 +2,22 @@ package model
 
 import JsonConverter
 import com.fractalwrench.json2kotlin.ConversionInfo
-import util.Color
-import util.InputUtils
-import util.println
 import com.google.gson.Gson
-import com.squareup.kotlinpoet.*
-import common.Generator
+import com.squareup.kotlinpoet.AnnotationSpec
+import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.FileSpec
+import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.ParameterSpec
+import com.squareup.kotlinpoet.PropertySpec
+import com.squareup.kotlinpoet.TypeSpec
 import di.DependencyProvider
 import local.DatabaseGenerator
+import util.Color
 import util.DataProvider
+import util.InputUtils
+import util.println
+import util.replaceLine
 import java.io.File
 import java.nio.file.Path
 import kotlin.io.path.div
@@ -269,10 +276,7 @@ data class Api(
                 projectPath.toFile().walk()
                     .find { file -> file.name.startsWith("local.properties") }
                     ?.let { file ->
-                        val existingProperty = file.readLines().find { line -> line.trim().startsWith(propertyKey) }
-                        if (existingProperty != null) {
-                            file.writeText(file.readText().replace(existingProperty, ""))
-                        }
+                        file.replaceLine("") { line -> line.trim().startsWith(propertyKey) }
                         file.appendText("\n$propertyKey=$propertyValue")
                         println("✔ Finished [$projectPath${File.separator}local.properties]")
                     } ?: run {

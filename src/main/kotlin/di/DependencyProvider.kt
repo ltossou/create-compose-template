@@ -9,6 +9,7 @@ import font.FontGenerator
 import local.DatabaseGenerator
 import local.DatabaseModuleGenerator
 import local.LocalDataSourceGenerator
+import mainapp.ApplicationClassGenerator
 import java.nio.file.Path
 
 class DependencyProvider(private val rootPackageName: String, val projectPath: Path) {
@@ -20,6 +21,7 @@ class DependencyProvider(private val rootPackageName: String, val projectPath: P
     val databaseModuleGenerator by lazy { DatabaseModuleGenerator(packageProvider) }
     val databaseGenerator: DatabaseGenerator by lazy { DatabaseGenerator(projectPath, packageProvider) }
     val fontGenerator: FontGenerator by lazy { FontGenerator(projectPath, packageProvider) }
+    val appClassGenerator: ApplicationClassGenerator by lazy { ApplicationClassGenerator(projectPath, packageProvider) }
 
     val packageProvider by lazy { PackageProvider(rootPackageName) }
     val jsonConverter: JsonConverter by lazy { JsonConverter() }
