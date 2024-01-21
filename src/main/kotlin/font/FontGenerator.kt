@@ -4,7 +4,10 @@ import com.squareup.kotlinpoet.FileSpec
 import common.Generator
 import di.PackageProvider
 import model.Font
+import model.Package
 import util.println
+import util.replaceLine
+import java.io.File
 import java.nio.file.Path
 
 /**
@@ -23,26 +26,43 @@ class FontGenerator(projectPath: Path, packageProvider: PackageProvider) : Gener
         if (font.name == "default") {
             return Result.Skip
         }
-        val warnings = generate(font)
+        generate(font)
+        val warnings = updateTheme(font)
         return Result.Success(font = font, warnings = warnings)
     }
 
     fun generate(font: Font): List<String> {
         println("\n🚚 Preparing ${font.name} font ...")
         println("💻 Generating Type.kt...")
-        createFromTemplateFile("Type",
+        createFromTemplateFile(
+            "Type",
             "Type",
             mapOf("FONT_NAME" to font.name),
             packageProvider.fontTypography()
         )
 
-        return listOf(
-            "TODO: Add     MaterialTheme(\n" +
-                    "        colorScheme = colorScheme,\n" +
-                    "        typography = ${font.name}FontFamily.typography(),\n" +
-                    "        content = content\n" +
-                    "    ) to Theme.kt"
-        )
+        return listOf()
+    }
+
+    private fun updateTheme(font: Font): List<String> {
+        println("💻 Updating Theme.kt...")
+        val uiThemeFolder =
+            Package(packageProvider.fontTypography()).toProjectDirectory(packageProvider, projectPath)
+        val themeFile = File(uiThemeFolder.toFile(), "Theme.kt")
+        return if (themeFile.exists()) {
+            themeFile.replaceLine("typography = ${font.name}FontFamily.typography(),") { line ->
+                line.trim().startsWith("typography") && line.contains("=")
+            }
+            emptyList()
+        } else {
+            listOf(
+                "TODO: ${themeFile.absolutePath} not found. Add  MaterialTheme(\n" +
+                        "        colorScheme = colorScheme,\n" +
+                        "        typography = ${font.name}FontFamily.typography(),\n" +
+                        "        content = content\n" +
+                        "    ) to Theme.kt"
+            )
+        }
     }
 
     private fun generateTypography(font: Font): FileSpec {
