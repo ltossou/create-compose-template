@@ -37,7 +37,7 @@
 - Compose
 - Navigation
 - Logger
-- Typography (with GoogleSans)
+- Typography (with GoogleSans or custom font)
 
 
 ## ✨ Features
@@ -65,6 +65,139 @@
   solution that allows you to store key-value pairs or typed objects
 - 🖋 [Google Font](https://fonts.google.com/) - Custom Google Font
 
+## 🌲 Generated file tree
+<pre>
+│   local.properties
+├───app
+│   └───src
+│       │
+│       ├───main
+│       │   │   AndroidManifest.xml
+│       │   │
+│       │   ├───java
+│       │   │   └───com
+│       │   │       └───${package}
+│       │   │           └───${appName}
+│       │   │               │   MainActivity.kt
+│       │   │               │   MainApplication.kt
+│       │   │               │
+│       │   │               ├───base
+│       │   │               │   ├───coroutines
+│       │   │               │   │       AppCoroutineDispatchers.kt
+│       │   │               │   │
+│       │   │               │   └───mvi
+│       │   │               │           Action.kt
+│       │   │               │           State.kt
+│       │   │               │
+│       │   │               ├───data
+│       │   │               │   ├───api
+│       │   │               │   │   └───${api}
+│       │   │               │   │       │   ${api}Api.kt
+│       │   │               │   │       │
+│       │   │               │   │       └───model
+│       │   │               │   │               ${endpoint}Response.kt
+│       │   │               │   │
+│       │   │               │   ├───common
+│       │   │               │   │       Resource.kt
+│       │   │               │   │
+│       │   │               │   ├───local
+│       │   │               │   │   │   AppDatabase.kt
+│       │   │               │   │   │
+│       │   │               │   │   ├───base
+│       │   │               │   │   │       BaseDao.kt
+│       │   │               │   │   │       BaseRepository.kt
+│       │   │               │   │   │       Converters.kt
+│       │   │               │   │   │       Mapper.kt
+│       │   │               │   │   │
+│       │   │               │   │   ├───dao
+│       │   │               │   │   │   └───${api}
+│       │   │               │   │   │           ${entity1}Dao.kt
+│       │   │               │   │   │
+│       │   │               │   │   ├───entity
+│       │   │               │   │   │   └───${api}
+│       │   │               │   │   │           ${entity1}Entity.kt
+│       │   │               │   │   │
+│       │   │               │   │   └───mapper
+│       │   │               │   │       └───${api}
+│       │   │               │   │               ${entity1}Mapper.kt
+│       │   │               │   │
+│       │   │               │   └───repository
+│       │   │               │       ├───${api}
+│       │   │               │       │       ${api}LocalDataSource.kt
+│       │   │               │       │       ${api}RemoteDataSource.kt
+│       │   │               │       │       ${api}Repository.kt
+│       │   │               │       │
+│       │   │               │       └───prefs
+│       │   │               │               AppPreferences.kt
+│       │   │               │               BaseSharedPreferences.kt
+│       │   │               │               EncryptedSharedPreferences.kt
+│       │   │               │               PreferencesRepository.kt
+│       │   │               │
+│       │   │               ├───di
+│       │   │               │       AppModule.kt
+│       │   │               │       CoroutinesModule.kt
+│       │   │               │       CoroutinesQualifier.kt
+│       │   │               │       DatabaseModule.kt
+│       │   │               │       FlipperModule.kt
+│       │   │               │       NetworkModule.kt
+│       │   │               │
+│       │   │               ├───ui
+│       │   │               │   ├───components
+│       │   │               │   │       AppTopBar.kt
+│       │   │               │   │       BackButton.kt
+│       │   │               │   │       FullScreenLoading.kt
+│       │   │               │   │       SearchComponent.kt
+│       │   │               │   │
+│       │   │               │   ├───screens
+│       │   │               │   │   ├───home
+│       │   │               │   │   │   │   HomeAction.kt
+│       │   │               │   │   │   │   HomeScreen.kt
+│       │   │               │   │   │   │   HomeViewModel.kt
+│       │   │               │   │   │   │
+│       │   │               │   │   │
+│       │   │               │   │   ├───search
+│       │   │               │   │   │   │   SearchAction.kt
+│       │   │               │   │   │   │   SearchScreen.kt
+│       │   │               │   │   │   │   SearchViewModel.kt
+│       │   │               │   │   │   │
+│       │   │               │   │   │   └───components
+│       │   │               │   │   │           SearchBox.kt
+│       │   │               │   │   │
+│       │   │               │   │   ├───settings
+│       │   │               │   │   │   │   SettingsAction.kt
+│       │   │               │   │   │   │   SettingsScreen.kt
+│       │   │               │   │   │   │   SettingsViewModel.kt
+│       │   │               │   │   │   │
+│       │   │               │   │   │   ├───components
+│       │   │               │   │   │   │       SettingsGroupItem.kt
+│       │   │               │   │   │   │       SettingsItem.kt
+│       │   │               │   │   │   │
+│       │   │               │   │   │   └───model
+│       │   │               │   │   │           Setting.kt
+│       │   │               │   │   │
+│       │   │               │   │   └───splash
+│       │   │               │   │           SplashAction.kt
+│       │   │               │   │           SplashScreen.kt
+│       │   │               │   │           SplashViewModel.kt
+│       │   │               │   │
+│       │   │               │   └───theme
+│       │   │               │           Color.kt
+│       │   │               │           Theme.kt
+│       │   │               │           Type.kt
+│       │   │               │
+│       │   │               └───util
+│       │   │                   └───extension
+│       │   │                           AnimationExt.kt
+│       │   │                           DataStoreExt.kt
+│       │   │                           ModifierExt.kt
+│       │   │                           NavControllerExt.kt
+│       │   │                           SharedPreferencesExt.kt
+│       │   │
+│       │
+│
+└───gradle
+    │   libs.versions.toml
+</pre>
 
 ## 🚧 Under Development 
 
