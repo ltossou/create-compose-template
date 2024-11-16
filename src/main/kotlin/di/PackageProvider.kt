@@ -4,6 +4,7 @@ import model.Api
 
 class PackageProvider(val root: String) {
     fun dataLocalBase() = "$root.data.local.base"
+    fun dataDomainBase() = "$root.data.domain.base"
     fun dataLocalRoot() = "$root.data.local"
 
     fun entities(apiName: String) = "$root.data.local.entity.$apiName".lowercase()
@@ -14,7 +15,7 @@ class PackageProvider(val root: String) {
 
     fun di() = "$root.di"
 
-    fun repositories(apiName: String) = "$root.data.repository.$apiName".lowercase()
+    fun repositories(apiName: String) = "$root.data.domain.repository.$apiName".lowercase()
 
     fun apis(apiName: String) = "$root.data.api.$apiName".lowercase()
     fun apis(api: Api) = apis(api.name.lowercase())

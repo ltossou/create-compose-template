@@ -85,7 +85,7 @@ class RepositoryGenerator(
                             )
                         }
                     )
-                    .superclass(ClassName(packageProvider.dataLocalBase(), "BaseRepository"))
+                    .superclass(ClassName(packageProvider.dataDomainBase(), "BaseRepository"))
                     .addSuperclassConstructorParameter("%L", "ioDispatcher")
                     .addEndpointsMethods(api, entities, models = models)
                     .build()
@@ -111,7 +111,7 @@ class RepositoryGenerator(
                     FunSpec.builder("fetch${endpoint.name.capitalize()}")
                         .returns(
                             FLOW.parameterizedBy(
-                                ClassName(packageProvider.dataLocalBase(), "Resource").parameterizedBy(
+                                ClassName(packageProvider.dataDomainBase(), "Resource").parameterizedBy(
                                     LIST.parameterizedBy(
                                         ClassName(
                                             packageProvider.entities(api.name),

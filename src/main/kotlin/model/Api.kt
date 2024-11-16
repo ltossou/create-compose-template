@@ -67,7 +67,7 @@ data class Api(
         fun computeModel(packageName: String) {
             model = jsonConverter.generate(
                 input = json,
-                rootClassName = "${name.capitalize()}Response",
+                rootClassName = "${name.split("-").map { it.capitalize() }.joinToString().capitalize()}Response",
                 packageName = packageName
             ).file
         }
@@ -197,7 +197,7 @@ data class Api(
                 println("💻 Add endpoint...")
                 val responseModel = dependencyProvider.jsonConverter.generate(
                     input = endpoint.json,
-                    rootClassName = endpoint.name.capitalize() + "Response",
+                    rootClassName = endpoint.name.split("-").map { it.capitalize() }.joinToString().capitalize() + "Response",
                     packageName = packageProvider.apiModels(api.name)
                 )
                 responseModels[endpoint.name] = responseModel
@@ -373,7 +373,7 @@ data class Api(
             val kotlinFiles = api.endpoints.map {
                 JsonConverter().generate(
                     input = it.json,
-                    rootClassName = it.name.capitalize() + "Response",
+                    rootClassName = it.name.split("-").map { it.capitalize() }.joinToString().capitalize() + "Response",
                     packageName = packageProvider.apiModels(api.name)
                 )
             }

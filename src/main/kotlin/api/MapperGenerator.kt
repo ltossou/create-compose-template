@@ -72,7 +72,7 @@ class MapperGenerator(private val packageProvider: PackageProvider) {
                     .superclass(
                         // class WeatherMapper @Inject constructor() :
                         //     Mapper<WeatherResponse, WeatherEntity>() {
-                        ClassName(packageProvider.dataLocalBase(), "Mapper")
+                        ClassName(packageProvider.dataDomainBase(), "Mapper")
                             .parameterizedBy(
                                 ClassName(packageName, modelName.capitalize()),
                                 ClassName(packageProvider.entities(api.name), "${entityName.capitalize()}Entity")
@@ -123,7 +123,7 @@ class MapperGenerator(private val packageProvider: PackageProvider) {
 
     fun generateBaseMapper(): FileSpec.Builder {
         println("💻 Generating $className...")
-        return FileSpec.builder(packageProvider.dataLocalBase(), className)
+        return FileSpec.builder(packageProvider.dataDomainBase(), className)
             .addType(
                 TypeSpec.classBuilder(className)
                     .addTypeVariable(TypeVariableName("From"))

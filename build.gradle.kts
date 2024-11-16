@@ -19,7 +19,7 @@ dependencies {
     // implementation(files("libs/core.jar"))
     implementation("com.squareup:kotlinpoet:1.14.2")
     // implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.moshi:moshi:1.14.0")
+    implementation("com.squareup.moshi:moshi:1.15.1")
     implementation("com.google.code.gson:gson:2.10.1")
     testImplementation(kotlin("test"))
 }
@@ -29,7 +29,7 @@ tasks.test {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.jvmTarget = "13"
 }
 
 application {

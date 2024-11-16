@@ -51,6 +51,7 @@ class ApplicationClassGenerator(projectPath: Path, packageProvider: PackageProvi
             mapOf(
                 TemplatePropertyKeys.DEPENDENCY_INJECTION to if (libraries.contains(AndroidLibraries.HILT)) AndroidLibraries.HILT.name else "",
                 TemplatePropertyKeys.USE_LIBRARY_TIMBER to libraries.contains(AndroidLibraries.TIMBER).toString(),
+                "USE_LIBRARY_" + AndroidLibraries.FLIPPER to libraries.contains(AndroidLibraries.FLIPPER).toString(),
                 "USE_LIBRARY_" + AndroidLibraries.WORKMANAGER to (libraries.contains(AndroidLibraries.WORKMANAGER) && libraries.contains(
                     AndroidLibraries.HILT
                 )).toString()

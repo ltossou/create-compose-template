@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="CreateComposeTemplate.main:jar2">
-    <output-path>$PROJECT_DIR$/out/artifacts/CreateComposeTemplate_main_jar2</output-path>
+  <artifact type="jar" name="CreateComposeTemplate.main:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CreateComposeTemplate</output-path>
     <root id="archive" name="create-compose-template.jar">
       <element id="module-output" name="CreateComposeTemplate.main" />
       <element id="module-output" name="CreateComposeTemplate.json2kotlin.main" />

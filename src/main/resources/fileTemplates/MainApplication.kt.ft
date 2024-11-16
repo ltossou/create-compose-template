@@ -3,6 +3,16 @@ package %%PACKAGE_NAME%%
 import android.app.Application
 #if (${USE_LIBRARY_WORKMANAGER} == "true") import androidx.hilt.work.HiltWorkerFactory #end
 #if (${USE_LIBRARY_WORKMANAGER} == "true") import androidx.work.Configuration #end
+#if (${USE_LIBRARY_FLIPPER} == "true")
+import com.facebook.flipper.android.AndroidFlipperClient
+import com.facebook.flipper.android.utils.FlipperUtils
+import com.facebook.flipper.plugins.databases.DatabasesFlipperPlugin
+import com.facebook.flipper.plugins.inspector.DescriptorMapping
+import com.facebook.flipper.plugins.inspector.InspectorFlipperPlugin
+import com.facebook.flipper.plugins.navigation.NavigationFlipperPlugin
+import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
+import com.facebook.soloader.SoLoader
+#end
 #if (${DEPENDENCY_INJECTION} == "HILT") import dagger.hilt.android.HiltAndroidApp #end
 #if (${USE_LIBRARY_TIMBER} == "true") import timber.log.Timber #end
 #if (${USE_LIBRARY_WORKMANAGER} == "true") import javax.inject.Inject #end
@@ -18,6 +28,19 @@ class MainApplication : Application() #if (${USE_LIBRARY_WORKMANAGER} == "true")
             Timber.plant(Timber.DebugTree())
         }
 #end
+        #if (${USE_LIBRARY_FLIPPER} == "true")
+
+        SoLoader.init(this, false)
+        if (BuildConfig.DEBUG && FlipperUtils.shouldEnableFlipper(this)) {
+            val client = AndroidFlipperClient.getInstance(this)
+            client.addPlugin(InspectorFlipperPlugin(this, DescriptorMapping.withDefaults()))
+            client.addPlugin(NavigationFlipperPlugin.getInstance())
+            client.addPlugin(NetworkFlipperPlugin())
+            client.addPlugin(DatabasesFlipperPlugin(this))
+
+            client.start()
+        }
+        #end
     }
 #if (${USE_LIBRARY_WORKMANAGER} == "true")
 
